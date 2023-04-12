@@ -1,0 +1,5 @@
+.qt-picker label {
+  display: inline-block;
+  margin: 0 5px;
+  font-weight: 600;
+}

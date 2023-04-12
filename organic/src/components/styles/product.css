@@ -1,0 +1,20 @@
+.product {
+  display: inline-block;
+  border: 3px solid rgba(0, 0, 0, 0.332);
+  border-radius: 40px;
+  width: 240px;
+  height: 300px;
+  margin: 5px 10px;
+}
+.product:hover {
+  border-color: rgba(255, 68, 0, 0.414);
+}
+.product img {
+  margin-top: 10px;
+}
+.product .prices {
+  display: flex;
+}
+.product .prices label {
+  flex: 1;
+}
