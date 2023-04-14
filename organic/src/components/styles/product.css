@@ -3,14 +3,22 @@
   border: 3px solid rgba(0, 0, 0, 0.332);
   border-radius: 40px;
   width: 240px;
-  height: 300px;
+  height: 320px;
   margin: 5px 10px;
 }
 .product:hover {
   border-color: rgba(255, 68, 0, 0.414);
 }
 .product img {
-  margin-top: 10px;
+  margin-top: 15px;
+  width: 180px;
+  height: 150px;
+}
+.product h5 {
+  margin-top: 7px;
+}
+.product button {
+  margin-top: 7px;
 }
 .product .prices {
   display: flex;

@@ -91,3 +91,10 @@ let catalog = [
     _id: "13",
   },
 ];
+
+class DataService {
+  getProducts() {
+    return catalog;
+  }
+}
+export default DataService;

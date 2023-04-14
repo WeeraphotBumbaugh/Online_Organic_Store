@@ -1,14 +1,17 @@
 import "./styles/product.css";
 import QuantityPicker from "./quantityPicker";
+import { useEffect } from "react";
 
-function Product() {
+function Product(props) {
+  useEffect(function () {}, []);
+
   return (
     <div className="product">
-      <img src="https://picsum.photos/150/150" alt="apple" />
-      <h5>Product</h5>
+      <img src={"/images/" + props.product.Image} alt="..." />
+      <h5>{props.product.Title}</h5>
       <div className="prices">
-        <label>Total</label>
-        <label>Price</label>
+        <label>Total ${props.product.Price.toFixed(2)}</label>
+        <label>Price ${props.product.Price.toFixed(2)}</label>
       </div>
       <QuantityPicker />
       <button>Add</button>
