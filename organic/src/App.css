@@ -38,7 +38,7 @@
 }
 .container-fluid,
 .page {
-  min-height: calc(100vh - 125px);
+  min-height: calc(100vh - 110px);
   margin: 0;
 }
 .page {
