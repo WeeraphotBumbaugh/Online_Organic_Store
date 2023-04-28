@@ -1,52 +1,36 @@
 import "./styles/navbar.css";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="#">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light store-nav">
+      <Link className="navbar-brand navbar-title store-title" to="/">
         Organic Store
-      </a>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      </Link>
+      <button className="navbar-toggler" type="button">
         <span className="navbar-toggler-icon" />
       </button>
-      <div className="collapse navbar-collapse" id="navbarNavDropdown">
+      <div className="collapse navbar-collapse">
         <ul className="navbar-nav">
           <li className="nav-item active">
-            <a className="nav-link" href="#">
-              Home <span className="sr-only">(current)</span>
-            </a>
+            <Link className="nav-link store-link" to="/">
+              Home
+            </Link>
           </li>
-          <li className="nav-item dropdown">
-            <a
-              className="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdownMenuLink"
-              data-toggle="dropdown"
-            >
-              Dropdown link
-            </a>
-            <div
-              className="dropdown-menu"
-              aria-labelledby="navbarDropdownMenuLink"
-            >
-              <a className="dropdown-item" href="#">
-                Action
-              </a>
-              <a className="dropdown-item" href="#">
-                Another action
-              </a>
-              <a className="dropdown-item" href="#">
-                Something else here
-              </a>
-            </div>
+          <li className="nav-item active">
+            <Link className="nav-link store-link" to="/about">
+              About
+            </Link>
+          </li>
+          <li className="nav-item active">
+            <Link className="nav-link store-link" to="/catalog">
+              Catalog
+            </Link>
+          </li>
+          <li className="nav-item active">
+            <Link className="nav-link store-link" to="/admin">
+              Admin
+            </Link>
           </li>
         </ul>
       </div>
