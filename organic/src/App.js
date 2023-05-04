@@ -8,6 +8,7 @@ import About from "./pages/about";
 import Admin from "./components/admin";
 import Footer from "./components/footer";
 import ShoppingList from "./pages/shoppingList";
+import Contact from "./pages/contact";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GlobalState from "./state/globalState";
 
@@ -24,6 +25,7 @@ function App() {
               <Route path="/catalog" element={<Catalog />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/list" element={<ShoppingList />} />
+              <Route path="/contact" element={<Contact />} />
             </Routes>
           </div>
           <Footer />

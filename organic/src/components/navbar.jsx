@@ -41,6 +41,11 @@ function NavBar() {
               Admin
             </Link>
           </li>
+          <li className="nav-item active">
+            <Link className="nav-link store-link" to="/contact">
+              Contact Us
+            </Link>
+          </li>
         </ul>
         <div className="d-flex">
           <Link to="/cart" className="btn btn-outline-dark">
