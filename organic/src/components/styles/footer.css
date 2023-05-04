@@ -1,8 +1,8 @@
 .footer {
-  border: 1px solid gray;
-  background-color: rgba(128, 128, 128, 0.366);
+  background-color: #fff;
   padding: 10px 10px 20px 10px;
   text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .footer h5 {
   text-align: center;

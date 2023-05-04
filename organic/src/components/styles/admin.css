@@ -1,10 +1,14 @@
 .admin {
   padding-top: 20px;
-  background-color: beige;
+  color: #ffffcc;
+}
+.admin h2 {
+  color: black;
 }
 .admin .parent {
   display: flex;
   justify-content: center;
+  color: black;
 }
 .admin h4 {
   text-align: center;
@@ -19,7 +23,6 @@
   margin-top: 15px;
   flex: auto;
   max-width: 300px;
-  margin-left: 50px;
 }
 
 .admin section {

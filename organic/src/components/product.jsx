@@ -1,14 +1,23 @@
 import "./styles/product.css";
 import QuantityPicker from "./quantityPicker";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import DataContext from "../state/dataContext";
 
 function Product(props) {
-  let [total, setTotal] = useState();
-  if (!total) {
-    total = props.product.Price.toFixed(2);
+  const [quantity, setQuantity] = useState(1);
+  const globalAdd = useContext(DataContext).addProductToCart;
+
+  function handleQuantity(qty) {
+    setQuantity(qty);
   }
-  function getData(data) {
-    setTotal(data * props.product.Price.toFixed(2));
+  function getTotal() {
+    let total = props.product.Price * quantity;
+    return total.toFixed(2);
+  }
+
+  function handleAdd() {
+    console.log("add clicked", props.product.Title);
+    globalAdd(props.product);
   }
 
   return (
@@ -16,11 +25,14 @@ function Product(props) {
       <img src={"/images/" + props.product.Image} alt="..." />
       <h5>{props.product.Title}</h5>
       <div className="prices">
-        <label>Total ${total}</label>
+        <label>Total ${getTotal()}</label>
         <label>Price ${props.product.Price.toFixed(2)}</label>
       </div>
-      <QuantityPicker updateTotal={getData} />
-      <button>Add</button>
+      <QuantityPicker
+        updateTotal={getTotal}
+        onQuantityChange={handleQuantity}
+      />
+      <button onClick={handleAdd}>Add</button>
     </div>
   );
 }

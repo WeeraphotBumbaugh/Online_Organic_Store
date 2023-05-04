@@ -3,7 +3,10 @@ import "./styles/admin.css";
 import { useState } from "react";
 
 function Admin() {
-  const [product, setProduct] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
+  const [product, setProduct] = useState({});
+  const [allCoupons, setAllCoupons] = useState([]);
+  const [coupon, setCoupon] = useState({});
 
   function handleProductChange(e) {
     const text = e.target.value;
@@ -12,9 +15,23 @@ function Admin() {
     copy[name] = text;
     setProduct(copy);
   }
+  function handleCouponChange(e) {
+    const text = e.target.value;
+    const name = e.target.name;
+    let copy = { ...coupon };
+    copy[name] = text;
+    setCoupon(copy);
+  }
 
   function saveProduct() {
-    console.log(product);
+    let copy = [...allProducts];
+    copy.push(product);
+    setAllProducts(copy);
+  }
+  function saveCoupon() {
+    let copy = [...allCoupons];
+    copy.push(coupon);
+    setAllCoupons(copy);
   }
 
   return (
@@ -64,9 +81,44 @@ function Admin() {
               Save Product
             </button>
           </div>
+          <ul className="prod-list">
+            {allProducts.map((prod) => (
+              <li key={prod.title}>{prod.title}</li>
+            ))}
+          </ul>
         </section>
         <section id="secCoupons">
           <h4>Create Coupons</h4>
+          <div className="mb-3">
+            <label className="form-label">Code</label>
+            <input
+              type="text"
+              name="coupon_code"
+              onBlur={handleCouponChange}
+              className="form-control"
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Discount %</label>
+            <input
+              type="text"
+              name="coupon_discount"
+              onBlur={handleCouponChange}
+              className="form-control"
+            />
+          </div>
+          <div className="mb-3 text-center">
+            <button onClick={saveCoupon} className="btn btn-dark">
+              Save Coupon
+            </button>
+          </div>
+          <ul className="prod-list">
+            {allCoupons.map((coupon) => (
+              <li key={coupon.coupon_code}>
+                {coupon.coupon_code} {coupon.coupon_discount}%
+              </li>
+            ))}
+          </ul>
         </section>
       </div>
     </div>

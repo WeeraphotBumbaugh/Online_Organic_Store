@@ -7,13 +7,13 @@ function QuantityPicker(props) {
   function increase() {
     let val = quantity + 1;
     setQuantity(val);
-    props.updateTotal(quantity + 1);
+    props.onQuantityChange(val);
   }
   function decrease() {
     if (quantity === 1) return;
     let val = quantity - 1;
     setQuantity(val);
-    props.updateTotal(quantity - 1);
+    props.onQuantityChange(val);
   }
 
   return (
