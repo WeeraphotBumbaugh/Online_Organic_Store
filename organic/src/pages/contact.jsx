@@ -1,3 +1,4 @@
+import "./styles/contact.css";
 import { Form, Button } from "react-bootstrap";
 
 function Contact() {

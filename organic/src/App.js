@@ -5,10 +5,11 @@ import NavBar from "./components/navbar";
 import Home from "./pages/home";
 import Catalog from "./pages/catalog";
 import About from "./pages/about";
+import Contact from "./pages/contact";
 import Admin from "./components/admin";
 import Footer from "./components/footer";
+import Cart from "./pages/cart";
 import ShoppingList from "./pages/shoppingList";
-import Contact from "./pages/contact";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GlobalState from "./state/globalState";
 
@@ -26,6 +27,7 @@ function App() {
               <Route path="/admin" element={<Admin />} />
               <Route path="/list" element={<ShoppingList />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/cart" element={<Cart />} />
             </Routes>
           </div>
           <Footer />

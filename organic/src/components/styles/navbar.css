@@ -1,5 +1,5 @@
 .store-nav {
-  background-color: #fff;
+  color: #fffef1;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -21,4 +21,7 @@
 
 .store-link:hover {
   color: #6c757d;
+}
+.d-flex {
+  margin-right: 50px;
 }

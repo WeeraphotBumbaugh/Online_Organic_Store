@@ -1,5 +1,6 @@
 .catalog {
-  background-color: rgba(220, 212, 200, 0.623);
+  background-color: ivory;
+  padding-top: 20px;
 }
 .catalog button {
   margin: 0 10px;

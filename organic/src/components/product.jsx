@@ -6,6 +6,7 @@ import DataContext from "../state/dataContext";
 function Product(props) {
   const [quantity, setQuantity] = useState(1);
   const globalAdd = useContext(DataContext).addProductToCart;
+  const cart = useContext(DataContext).cart;
 
   function handleQuantity(qty) {
     setQuantity(qty);
@@ -16,8 +17,12 @@ function Product(props) {
   }
 
   function handleAdd() {
-    console.log("add clicked", props.product.Title);
-    globalAdd(props.product);
+    const exisitingProduct = cart.find((p) => p._id === props.product._id);
+    if (exisitingProduct) {
+      exisitingProduct.quantity += quantity;
+    } else {
+      globalAdd({ ...props.product, quantity: quantity });
+    }
   }
 
   return (
@@ -25,8 +30,8 @@ function Product(props) {
       <img src={"/images/" + props.product.Image} alt="..." />
       <h5>{props.product.Title}</h5>
       <div className="prices">
-        <label>Total ${getTotal()}</label>
         <label>Price ${props.product.Price.toFixed(2)}</label>
+        <label>Total ${getTotal()}</label>
       </div>
       <QuantityPicker
         updateTotal={getTotal}

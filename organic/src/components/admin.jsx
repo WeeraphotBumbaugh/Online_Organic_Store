@@ -27,6 +27,7 @@ function Admin() {
     let copy = [...allProducts];
     copy.push(product);
     setAllProducts(copy);
+    console.log(copy);
   }
   function saveCoupon() {
     let copy = [...allCoupons];
