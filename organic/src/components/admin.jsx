@@ -45,7 +45,7 @@ function Admin() {
             <label className="form-label">Title</label>
             <input
               type="text"
-              name="title"
+              name="Title"
               onBlur={handleProductChange}
               className="form-control"
             />
@@ -54,7 +54,7 @@ function Admin() {
             <label className="form-label">Category</label>
             <input
               type="text"
-              name="category"
+              name="Category"
               onBlur={handleProductChange}
               className="form-control"
             />
@@ -63,7 +63,7 @@ function Admin() {
             <label className="form-label">Price</label>
             <input
               type="number"
-              name="price"
+              name="Price"
               onBlur={handleProductChange}
               className="form-control"
             />
@@ -72,7 +72,7 @@ function Admin() {
             <label className="form-label">Image</label>
             <input
               type="text"
-              name="imageUrl"
+              name="Image"
               onBlur={handleProductChange}
               className="form-control"
             />
