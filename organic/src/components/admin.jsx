@@ -1,12 +1,28 @@
 import React from "react";
 import "./styles/admin.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import DataService from "../services/dataService";
 
 function Admin() {
   const [allProducts, setAllProducts] = useState([]);
   const [product, setProduct] = useState({});
   const [allCoupons, setAllCoupons] = useState([]);
   const [coupon, setCoupon] = useState({});
+  const service = new DataService();
+
+  useEffect(function () {
+    loadProducts();
+    loadCoupons();
+  }, []);
+
+  async function loadProducts() {
+    let prods = await service.getProducts();
+    setAllProducts(prods);
+  }
+  async function loadCoupons() {
+    let coups = await service.getCoupons();
+    setAllCoupons(coups);
+  }
 
   function handleProductChange(e) {
     const text = e.target.value;
@@ -15,6 +31,16 @@ function Admin() {
     copy[name] = text;
     setProduct(copy);
   }
+  async function saveProduct() {
+    let prodToSave = { ...product };
+    prodToSave.Price = parseFloat(prodToSave.Price);
+    await service.postProduct(prodToSave);
+    let copy = [...allProducts];
+    copy.push(product);
+    setAllProducts(copy);
+    console.log(copy);
+  }
+
   function handleCouponChange(e) {
     const text = e.target.value;
     const name = e.target.name;
@@ -22,16 +48,18 @@ function Admin() {
     copy[name] = text;
     setCoupon(copy);
   }
-
-  function saveProduct() {
-    let copy = [...allProducts];
-    copy.push(product);
-    setAllProducts(copy);
-    console.log(copy);
-  }
-  function saveCoupon() {
+  async function saveCoupon() {
+    let coupToSave = { ...coupon };
+    coupToSave.coupon_discount = parseFloat(coupToSave.coupon_discount);
+    await service.postCoupon(coupon);
     let copy = [...allCoupons];
     copy.push(coupon);
+    setAllCoupons(copy);
+  }
+
+  async function deleteCoupon(code) {
+    await service.deleteCoupon(code);
+    let copy = allCoupons.filter((c) => c.coupon_code !== code);
     setAllCoupons(copy);
   }
 
@@ -46,34 +74,38 @@ function Admin() {
             <input
               type="text"
               name="Title"
-              onBlur={handleProductChange}
+              onChange={handleProductChange}
               className="form-control"
             />
           </div>
           <div className="mb-3">
             <label className="form-label">Category</label>
-            <input
-              type="text"
+            <select
+              className="form-select"
               name="Category"
-              onBlur={handleProductChange}
-              className="form-control"
-            />
+              onChange={handleProductChange}
+            >
+              <option value="Fruit">Fruit</option>
+              <option value="Vegetable">Vegetable</option>
+              <option value="Grain">Grain</option>
+              <option value="Meat">Meat</option>
+            </select>
           </div>
           <div className="mb-3">
             <label className="form-label">Price</label>
             <input
               type="number"
               name="Price"
-              onBlur={handleProductChange}
+              onChange={handleProductChange}
               className="form-control"
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Image</label>
+            <label className="form-label">Image(.png)</label>
             <input
               type="text"
               name="Image"
-              onBlur={handleProductChange}
+              onChange={handleProductChange}
               className="form-control"
             />
           </div>
@@ -84,7 +116,7 @@ function Admin() {
           </div>
           <ul className="prod-list">
             {allProducts.map((prod) => (
-              <li key={prod.title}>{prod.title}</li>
+              <li key={prod.Title}>{prod.Title}</li>
             ))}
           </ul>
         </section>
@@ -95,7 +127,7 @@ function Admin() {
             <input
               type="text"
               name="coupon_code"
-              onBlur={handleCouponChange}
+              onChange={handleCouponChange}
               className="form-control"
             />
           </div>
@@ -104,7 +136,7 @@ function Admin() {
             <input
               type="text"
               name="coupon_discount"
-              onBlur={handleCouponChange}
+              onChange={handleCouponChange}
               className="form-control"
             />
           </div>
@@ -116,7 +148,13 @@ function Admin() {
           <ul className="prod-list">
             {allCoupons.map((coupon) => (
               <li key={coupon.coupon_code}>
-                {coupon.coupon_code} {coupon.coupon_discount}%
+                {coupon.coupon_code} - {coupon.coupon_discount}%
+                <button
+                  onClick={() => deleteCoupon(coupon.coupon_code)}
+                  className="btn btn-sm btn-outline-danger"
+                >
+                  Delete
+                </button>
               </li>
             ))}
           </ul>

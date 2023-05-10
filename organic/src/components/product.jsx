@@ -37,7 +37,9 @@ function Product(props) {
         updateTotal={getTotal}
         onQuantityChange={handleQuantity}
       />
-      <button onClick={handleAdd}>Add</button>
+      <button onClick={handleAdd} className="btn btn-success">
+        Add
+      </button>
     </div>
   );
 }

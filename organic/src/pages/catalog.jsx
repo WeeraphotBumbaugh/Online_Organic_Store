@@ -12,14 +12,14 @@ function Catalog() {
     loadCatalog();
   }, []);
 
-  function loadCatalog() {
+  async function loadCatalog() {
     let service = new DataService();
-    let prods = service.getProducts();
+    let prods = await service.getProducts();
     setProducts(prods);
-
-    let categories = ["Fruit", "Vegetable", "Grain", "Meat"];
-    setCategory(categories);
     setProdsToDsiplay(prods);
+
+    let cats = await service.getCategories();
+    setCategory(cats);
   }
 
   function filter(category) {

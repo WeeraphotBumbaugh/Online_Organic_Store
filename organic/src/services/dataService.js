@@ -1,3 +1,5 @@
+import axios from "axios";
+
 let catalog = [
   {
     Title: "Apple",
@@ -91,10 +93,34 @@ let catalog = [
     _id: "13",
   },
 ];
+const url = "http://127.0.0.1:5000/api";
 
 class DataService {
-  getProducts() {
-    return catalog;
+  async getProducts() {
+    // use this line below to run the front end without back end
+    //return catalog;
+    let resp = await axios.get(`${url}/catalog`);
+    return resp.data;
+  }
+  async getCategories() {
+    let resp = await axios.get(`${url}/categories`);
+    return resp.data;
+  }
+  async getCoupons() {
+    let resp = await axios.get(`${url}/coupons`);
+    return resp.data;
+  }
+  async postProduct(data) {
+    let resp = await axios.post(`${url}/catalog`, data);
+    return resp.data;
+  }
+  async postCoupon(data) {
+    let resp = await axios.post(`${url}/coupons`, data);
+    return resp.data;
+  }
+  async deleteCoupon(data) {
+    let resp = await axios.delete(`${url}/coupons/${data}`, data);
+    return resp.data;
   }
 }
 export default DataService;
