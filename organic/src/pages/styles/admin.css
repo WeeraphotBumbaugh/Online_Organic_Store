@@ -36,9 +36,14 @@
   border-radius: 30px;
   text-align: left;
 }
-.admin ul li {
-  margin-top: 5px;
+.admin .item {
+  display: flex;
+  margin-bottom: 5px;
 }
-.admin ul li button {
-  margin-left: 15px;
+.admin .item span {
+  flex: 1;
+}
+.admin .item button {
+  align-self: flex-end;
+  justify-self: end;
 }

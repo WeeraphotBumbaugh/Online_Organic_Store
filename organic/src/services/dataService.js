@@ -118,6 +118,10 @@ class DataService {
     let resp = await axios.post(`${url}/coupons`, data);
     return resp.data;
   }
+  async deleteProduct(id) {
+    let resp = await axios.delete(`${url}/products/${id}`, id);
+    return resp.data;
+  }
   async deleteCoupon(data) {
     let resp = await axios.delete(`${url}/coupons/${data}`, data);
     return resp.data;

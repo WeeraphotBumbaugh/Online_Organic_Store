@@ -19,7 +19,7 @@ function Cart() {
           <div>
             <h3>Current Shopping Cart</h3>
             <h5>You have {cart.length} different products in your cart.</h5>
-            <h5>Your total is: {total()}</h5>
+            <h5>Your total is: ${total()}</h5>
           </div>
         ) : (
           <h3>Your Cart Is Empty</h3>

@@ -6,11 +6,13 @@ import DataService from "../services/dataService";
 function Admin() {
   const [allProducts, setAllProducts] = useState([]);
   const [product, setProduct] = useState({});
+
   const [allCoupons, setAllCoupons] = useState([]);
   const [coupon, setCoupon] = useState({});
+
   const service = new DataService();
 
-  useEffect(function () {
+  useEffect(() => {
     loadProducts();
     loadCoupons();
   }, []);
@@ -31,16 +33,6 @@ function Admin() {
     copy[name] = text;
     setProduct(copy);
   }
-  async function saveProduct() {
-    let prodToSave = { ...product };
-    prodToSave.Price = parseFloat(prodToSave.Price);
-    await service.postProduct(prodToSave);
-    let copy = [...allProducts];
-    copy.push(product);
-    setAllProducts(copy);
-    console.log(copy);
-  }
-
   function handleCouponChange(e) {
     const text = e.target.value;
     const name = e.target.name;
@@ -48,15 +40,29 @@ function Admin() {
     copy[name] = text;
     setCoupon(copy);
   }
+
+  async function saveProduct() {
+    let prodToSave = { ...product };
+    prodToSave.Price = parseFloat(prodToSave.Price);
+    await service.postProduct(prodToSave);
+    let copy = [...allProducts];
+    copy.push(prodToSave);
+    setAllProducts(copy);
+    console.log(copy);
+  }
   async function saveCoupon() {
     let coupToSave = { ...coupon };
     coupToSave.coupon_discount = parseFloat(coupToSave.coupon_discount);
-    await service.postCoupon(coupon);
+    await service.postCoupon(coupToSave);
     let copy = [...allCoupons];
-    copy.push(coupon);
+    copy.push(coupToSave);
     setAllCoupons(copy);
   }
 
+  async function deleteProduct(id) {
+    await service.deleteProduct(id);
+    setAllProducts(allProducts.filter((p) => p._id !== id));
+  }
   async function deleteCoupon(code) {
     await service.deleteCoupon(code);
     let copy = allCoupons.filter((c) => c.coupon_code !== code);
@@ -116,7 +122,15 @@ function Admin() {
           </div>
           <ul className="prod-list">
             {allProducts.map((prod) => (
-              <li key={prod.Title}>{prod.Title}</li>
+              <li className="item" key={prod.Title}>
+                <span>{prod.Title}</span>
+                <button
+                  onClick={() => deleteProduct(prod._id)}
+                  className="btn btn-sm btn-outline-danger"
+                >
+                  Delete
+                </button>
+              </li>
             ))}
           </ul>
         </section>
@@ -147,8 +161,10 @@ function Admin() {
           </div>
           <ul className="prod-list">
             {allCoupons.map((coupon) => (
-              <li key={coupon.coupon_code}>
-                {coupon.coupon_code} - {coupon.coupon_discount}%
+              <li className="item" key={coupon.coupon_code}>
+                <span>
+                  {coupon.coupon_code} - {coupon.coupon_discount}%
+                </span>
                 <button
                   onClick={() => deleteCoupon(coupon.coupon_code)}
                   className="btn btn-sm btn-outline-danger"

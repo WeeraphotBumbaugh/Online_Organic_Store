@@ -6,7 +6,7 @@ import Home from "./pages/home";
 import Catalog from "./pages/catalog";
 import About from "./pages/about";
 import Contact from "./pages/contact";
-import Admin from "./components/admin";
+import Admin from "./pages/admin";
 import Footer from "./components/footer";
 import Cart from "./pages/cart";
 import ShoppingList from "./pages/shoppingList";
